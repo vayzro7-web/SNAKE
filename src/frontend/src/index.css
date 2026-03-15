@@ -1,0 +1,162 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.12 0.005 260;
+    --foreground: 0.96 0.01 200;
+    --card: 0.15 0.01 260;
+    --card-foreground: 0.96 0.01 200;
+    --popover: 0.15 0.01 260;
+    --popover-foreground: 0.96 0.01 200;
+    --primary: 0.82 0.18 155;
+    --primary-foreground: 0.1 0.01 260;
+    --secondary: 0.2 0.02 260;
+    --secondary-foreground: 0.85 0.05 200;
+    --muted: 0.18 0.01 260;
+    --muted-foreground: 0.55 0.04 210;
+    --accent: 0.75 0.2 185;
+    --accent-foreground: 0.1 0.01 260;
+    --destructive: 0.65 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.25 0.03 250;
+    --input: 0.2 0.02 260;
+    --ring: 0.82 0.18 155;
+    --radius: 0.75rem;
+    --chart-1: 0.82 0.18 155;
+    --chart-2: 0.75 0.2 185;
+    --chart-3: 0.7 0.18 220;
+    --chart-4: 0.8 0.2 90;
+    --chart-5: 0.65 0.22 25;
+    --sidebar: 0.14 0.008 260;
+    --sidebar-foreground: 0.96 0.01 200;
+    --sidebar-primary: 0.82 0.18 155;
+    --sidebar-primary-foreground: 0.1 0.01 260;
+    --sidebar-accent: 0.18 0.015 260;
+    --sidebar-accent-foreground: 0.85 0.05 200;
+    --sidebar-border: 0.25 0.03 250;
+    --sidebar-ring: 0.82 0.18 155;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Bricolage Grotesque", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Neon glow effects */
+.neon-text {
+  text-shadow: 0 0 10px oklch(0.82 0.18 155 / 0.8), 0 0 30px
+    oklch(0.82 0.18 155 / 0.5), 0 0 60px oklch(0.82 0.18 155 / 0.3);
+}
+
+.neon-cyan {
+  text-shadow: 0 0 10px oklch(0.75 0.2 185 / 0.8), 0 0 30px
+    oklch(0.75 0.2 185 / 0.5), 0 0 60px oklch(0.75 0.2 185 / 0.3);
+}
+
+.neon-border {
+  box-shadow: 0 0 8px oklch(0.82 0.18 155 / 0.4), inset 0 0 8px
+    oklch(0.82 0.18 155 / 0.1);
+  border-color: oklch(0.82 0.18 155 / 0.6);
+}
+
+.neon-btn {
+  box-shadow: 0 0 20px oklch(0.82 0.18 155 / 0.5), 0 0 40px
+    oklch(0.82 0.18 155 / 0.2);
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+.neon-btn:hover {
+  box-shadow: 0 0 30px oklch(0.82 0.18 155 / 0.8), 0 0 60px
+    oklch(0.82 0.18 155 / 0.4);
+  transform: translateY(-1px);
+}
+.neon-btn:active {
+  transform: translateY(0);
+}
+
+/* Grid background */
+.game-bg {
+  background-image: linear-gradient(
+      oklch(0.3 0.04 155 / 0.07) 1px,
+      transparent 1px
+    ), linear-gradient(90deg, oklch(0.3 0.04 155 / 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Scanline overlay */
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    oklch(0 0 0 / 0.04) 2px,
+    oklch(0 0 0 / 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%,
+  95%,
+  100% {
+    opacity: 1;
+  }
+  96%,
+  99% {
+    opacity: 0.8;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 5s infinite;
+}
